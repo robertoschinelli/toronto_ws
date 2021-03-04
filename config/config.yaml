@@ -1,7 +1,7 @@
 #simple_model is the name space
 simple_model:
     # based on https://wiki.ros.org/ros_control this controller reads the state 
-    # of all the joints modificato per git
+    # of all the joints modificato per git online
     joint_state_controller:
     type: joint_state_controller/JointStateController
       publish_rate: 20
