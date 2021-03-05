@@ -3,7 +3,7 @@ simple_model:
     # based on https://wiki.ros.org/ros_control this controller reads the state 
     # of all the joints modificato per git online
     joint_state_controller:
-    type: joint_state_controller/JointStateController
+      type: joint_state_controller/JointStateController
       publish_rate: 20
 
     base_to_second_joint_position_controller:

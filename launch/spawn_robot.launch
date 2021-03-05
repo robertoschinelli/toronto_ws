@@ -33,13 +33,13 @@
           output="screen" 
           args="-urdf -model simple_model -param robot_description"/>
 
-    <!-- load the controllers -->
+    <!-- load the controllers sotto spawner c'era aggiunto ns="/simple_model"  -->
     <rosparam file="$(find simple_example_description)/config/config.yaml" command="load"/>
 
     <node name="controller_spawner" 
           pkg ="controller_manager" 
           type="spawner" 
-          ns="/simple_model" 
+          ns="/simple_model"
           args="base_to_second_joint_position_controller base_to_third_joint_position_controller joint_state_controller"/>
     
 
