@@ -57,6 +57,25 @@
     </visual>
   </link>
 
+<!--Link #4 palm-->
+  <link name="palm_link">
+    <inertial>
+        <mass value="0.2" />
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+    </inertial>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    <collision>
+      <geometry>
+        <box size="0.02 0.005 0.005" />
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <box size="0.02 0.005 0.005" />
+      </geometry>
+    </visual>
+  </link>
+
   <!--joint-->
   <joint name="base_to_second_joint" type="continuous">
     <parent link="base_link"/>
@@ -70,6 +89,15 @@
   <joint name="base_to_third_joint" type="continuous">
     <parent link="second_link"/>
     <child link="third_link"/>
+	<!-- assi originali: 1 0 0 -->
+    <axis xyz="1 0 0"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/> 
+  </joint>
+
+<!--joint-->
+  <joint name="palm_joint" type="continuous">
+    <parent link="third_link"/>
+    <child link="palm_link"/>
 	<!-- assi originali: 1 0 0 -->
     <axis xyz="1 0 0"/>
     <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/> 
@@ -105,16 +133,13 @@
   </transmission>
 
 
-  <!-- transmission is the ability to define the ros controller used to control the joint. -->
+  <!-- transmission for the third trans. -->
   <transmission name="base_to_third_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="motor2">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="base_to_third_joint">
-      <!--lets use a postion type interface, which is a mechanism for ros_control
-          to communicate with hardware. See: https://wiki.ros.org/ros_control-->
-      <!--hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface-->
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
