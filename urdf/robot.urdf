@@ -76,11 +76,30 @@
     </visual>
   </link>
 
+<!--Link #5 left finger-->
+  <link name="left_finger">
+    <inertial>
+        <mass value="0.2" />
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+    </inertial>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    <collision>
+      <geometry>
+        <box size="0.02 0.005 0.005" />
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <box size="0.02 0.005 0.005" />
+      </geometry>
+    </visual>
+  </link>
+
   <!--joint-->
   <joint name="base_to_second_joint" type="continuous">
+    <pose>0 0.1 0 0 0 0</pose>
     <parent link="base_link"/>
     <child link="second_link"/>
-	<!-- assi originali: 1 0 0 -->
     <axis xyz="0 0 1"/>
     <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/> 
   </joint>
@@ -89,7 +108,6 @@
   <joint name="base_to_third_joint" type="continuous">
     <parent link="second_link"/>
     <child link="third_link"/>
-	<!-- assi originali: 1 0 0 -->
     <axis xyz="1 0 0"/>
     <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/> 
   </joint>
@@ -98,9 +116,16 @@
   <joint name="palm_joint" type="continuous">
     <parent link="third_link"/>
     <child link="palm_link"/>
-	<!-- assi originali: 1 0 0 -->
     <axis xyz="1 0 0"/>
-    <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/> 
+    <origin xyz="0.0 0.0 0.025" rpy="0.0 0.0 0.0"/> 
+  </joint>
+
+<!--joint-->
+  <joint name="left_finger_joint" type="continuous">
+    <parent link="third_link"/>
+    <child link="left_finger"/>
+    <axis xyz="1 0 0"/>
+    <origin xyz="-0.012 0.0 0.025" rpy="0.0 0.0 0.0"/> 
   </joint>
 
   <!--                GAZEBO RELATED PART                             -->
